@@ -21,22 +21,22 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
-    
+
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
 
         // Define production build to allow React to strip out unnecessary checks
         new webpack.DefinePlugin(GLOBALS),
-        
+
         // css 파일 단일화 plugin
         //new ExtractTextPlugin('[name].[contenthash].css'),
-        
+
         //webpack의 output의 filename에 정의한 이름대로 dist에 새롭게 생성되는 index 파일에 js 파을을 추가
         new HtmlWebpackPlugin({
         	title: 'Boot React',
             template: path.join(__dirname, 'public/index.html')
         }),
-        
+
         // Minify the bundle
         //new webpack.optimize.UglifyJsPlugin(),
         // Allows error warnings but does not stop compiling.
@@ -49,15 +49,16 @@ module.exports = {
     },
     module: {
             loaders: [
-                {
-                    test: /\.js$/,
-                    loader: 'babel-loader',
-                    exclude: /node_modules/,
-                    query: {
-                        cacheDirectory: true,
-                        presets: ['es2015', 'react']
-                    }
-                },
+								{
+									test: /\.js$/, // All .js files
+									exclude: /(node_modules)/,
+									loaders: ['babel?cacheDirectory'],
+										include: path.join(__dirname, 'src')
+								},
+								{
+										test: /\.json$/,
+										loader: "json-loader"
+								},
                 {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url?name=[name].[ext]'},
                 {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff&name=[name].[ext]"},
                 {test: /\.ttf(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream&name=[name].[ext]'},
