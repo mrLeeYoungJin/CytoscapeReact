@@ -1,4 +1,5 @@
 import React from 'react';
+import {equipTypes} from '../data/test/testdump'
 
 class DeviceEquipType extends React.Component {
 	constructor(props){
@@ -11,14 +12,13 @@ class DeviceEquipType extends React.Component {
 	}
 
 	selectTypeList() {
-		let listData = ["GCB", "VCB"];
+		let listData = equipTypes;
 		this.setState({
 			typeList : listData
 		});
 	}
 
-	componentWillMount(){
-	}
+	componentWillMount(){}
 
 	componentDidMount() {
 		this.selectTypeList();
@@ -30,8 +30,8 @@ class DeviceEquipType extends React.Component {
     			<select className="form-control" id="Type">
       				<option>Equip Type</option>
 							{this.state.typeList.map((item) =>
-			  			<option value="" key={item}>
-			  				{item}
+			  			<option value={item.code} key={item.value}>
+			  				{item.value}
 			  			</option>
 		  				)}
 				</select>
