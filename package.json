@@ -62,7 +62,7 @@
 	  
 	  "font-awesome": "4.7.0",
 	  "fastclick": "1.0.6",
-	  "lodash": "4.17.15",
+	  "lodash": "4.17.19",
 	  "dagre": "0.7.4",
 	  "cytoscape-dagre": "1.5.0"
 	 }
